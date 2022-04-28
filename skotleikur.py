@@ -1,5 +1,8 @@
 import arcade
 import random
+import os
+
+
 
 BREIDD = 640
 HAED = 480
@@ -24,7 +27,8 @@ class Leikurinn(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_lrwh_rectangle_textured(0, 0, BREIDD, HAED, self.bakgrunnur)
+        width, height = self.get_size()
+        arcade.draw_lrwh_rectangle_textured(0, 0, width, height, self.bakgrunnur)
 
     def on_mouse_motion(self, x, y, dx, dy):
         pass
@@ -34,6 +38,14 @@ class Leikurinn(arcade.Window):
 
     def update(self, delta_time):
         pass
+    #bíða eftir að ýtt sé á takka
+    def on_key_press(self, key, modifiers):
+        #ef takki er F11
+        if key == arcade.key.F11:
+            #skipta á milli fullscreen og ekki fullscreen
+            self.set_fullscreen(not self.fullscreen)
+            width, height = self.get_size()
+            self.set_viewport(0, width, 0, height)
 
 
 
